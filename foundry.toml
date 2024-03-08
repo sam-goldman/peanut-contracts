@@ -5,6 +5,9 @@ libs = ["lib"]
 optimizer = true
 optimizer_runs = 99999
 solc = "0.8.23"
+build_info = true
+extra_output = ['storageLayout']
+fs_permissions = [{ access = "read", path = "./out"}, { access = "read-write", path = "./cache"}]
 
 [rpc_endpoints]
 mainnet = "https://mainnet.infura.io/v3/${INFURA_API_KEY}"
@@ -113,7 +116,7 @@ avalanche = { key = "${SNOWTRACE_TOKEN}", url = "https://api.snowtrace.io/api" }
 bnb = { key = "${BSCSCAN_TOKEN}", url = "https://api.bscscan.com" }
 linea = { key = "${LINEASCAN_TOKEN}", url = "https://api.lineascan.build/api" }
 linea-goerli = { key = "${LINEASCAN_TOKEN}", url = "https://api-goerli.lineascan.build/api" }
-scroll = { key = "${SCROLLSCAN_TOKEN}", url = "https://api.scrollscan.com/api"}
+# scroll = { key = "${SCROLLSCAN_TOKEN}", url = "https://api.scrollscan.com/api"}
 # scroll-sepolia = { key = "${SCROLLSCAN_TOKEN}" , url = "https://api.scrollscan.com/api"}
 moonbeam = { key = "${MOONSCAN_TOKEN}", url = "https://api-moonbeam.moonscan.io/api" }
 milkomeda-c1 = { key = "", url = " https://explorer-mainnet-cardano-evm.c1.milkomeda.com/api"}

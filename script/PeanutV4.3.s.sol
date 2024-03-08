@@ -7,15 +7,14 @@ import "./DeploymentGlobals.sol";
 
 contract DeployScript is Script, DeploymentGlobals {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
+        vm.envOr("IS_SPHINX", false) ? vm.startPrank(safeAddress()) : vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         address ecoAddress = ecoAddressByChain[block.chainid];
 
         // Create new peanut contract (with broadcast enabled this will send the tx to mempool)
         PeanutV4 peanutV4 = new PeanutV4(ecoAddress);
 
-        vm.stopBroadcast();
+        vm.envOr("IS_SPHINX", false) ? vm.stopPrank() : vm.stopBroadcast();
 
         // do something for no unused variable warning (log contract address)
         console.log("contract address: %s", address(peanutV4));
