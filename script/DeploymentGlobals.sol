@@ -2,8 +2,9 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Script.sol";
+import { Sphinx } from "@sphinx-labs/contracts/SphinxPlugin.sol";
 
-contract DeploymentGlobals {
+contract DeploymentGlobals is Sphinx {
     mapping(uint256 => address) public ecoAddressByChain;
     address public squidAddress;
 
@@ -24,5 +25,12 @@ contract DeploymentGlobals {
         // Optimism and its goerli
         ecoAddressByChain[10] = 0xe7BC9b3A936F122f08AAC3b1fac3C3eC29A78874;
         ecoAddressByChain[420] = 0xe7BC9b3A936F122f08AAC3b1fac3C3eC29A78874;
+    }
+
+    function configureSphinx() public override {
+        sphinxConfig.owners = [<YOUR_EOA_ADDRESS>]; // Owner address(es)
+        sphinxConfig.orgId = <YOUR_SPHINX_ORG_ID>; // Org ID (string)
+        sphinxConfig.projectName = "Peanut";
+        sphinxConfig.threshold = 1;
     }
 }

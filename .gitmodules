@@ -7,3 +7,6 @@
 [submodule "lib/currency"]
 	path = lib/currency
 	url = https://github.com/helix-foundation/currency
+[submodule "lib/sphinx"]
+	path = lib/sphinx
+	url = https://github.com/sphinx-labs/sphinx
